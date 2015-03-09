@@ -20,7 +20,7 @@ public class AnagramsInSetOfWords {
 		String[] s = {"cat", "dog", "tac", "god", "act", "gdo"};
 		findAnagramsSet(s);
 	}
-	public static int[] primeNum = {1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+	public static int[] primeNum = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101};
 	public static void findAnagramsSet(String[] s){
 		Map<Integer, Integer> m = new HashMap<>();
 		ArrayList<List<String>> arrL = new ArrayList<>();
