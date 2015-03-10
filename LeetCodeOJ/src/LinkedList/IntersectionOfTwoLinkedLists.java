@@ -23,17 +23,77 @@ public class IntersectionOfTwoLinkedLists {
 	}
 	public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 		Set<ListNode> s = new HashSet<>();
-        while(headA!=null){
-        	s.add(headA);
-        	headA=headA.next;
-        }
-        while(headB!=null){
-        	if(s.contains(headB))
-        		return headB;
-        	headB = headB.next;
-        }
-        return null;
-    }
+		while(headA!=null){
+        		s.add(headA);
+        		headA=headA.next;
+        	}
+        	while(headB!=null){
+        		if(s.contains(headB))
+        			return headB;
+        		headB = headB.next;
+        	}
+	        return null;
+	}
+	public static ListNode findIntersectionByLength(ListNode headA, ListNode headB){
+		if(headA==null || headB==null)
+			return null;
+		int lengthA = 0;
+		int lengthB = 0;
+		ListNode headAA = headA;
+		ListNode headBB = headB;
+		while(headAA!=null && headBB!=null){
+			lengthA++;
+			lengthB++;
+			headAA = headAA.next;
+			headBB = headBB.next;
+		}
+		while(headAA!=null){
+			lengthA++;
+			headAA = headAA.next;
+		}
+		while(headBB!=null){
+			lengthB++;
+			headBB = headBB.next;
+		}
+		if(lengthA>lengthB){
+			for(int i=0;i<lengthA-lengthB;i++)
+				headA = headA.next;
+		}
+		else{
+			for(int i=0;i<lengthB-lengthA;i++)
+				headB = headB.next;
+		}
+		while(headA!=null){
+			if(headA == headB)
+				return headA;
+			headA = headA.next;
+			headB = headB.next;
+		}
+		return null;
+	}
+	public static ListNode findIntersectionByCircularList(ListNode headA, ListNode headB){
+		if(headA==null || headB==null)
+			return null;
+		int lengthA = 1;
+		ListNode headAA = headA;
+		ListNode headBB = headB;
+		while(headAA.next!=null){
+			lengthA++;
+			headAA = headAA.next;
+		}
+		headAA.next = headA;
+		while(lengthA>0){
+			lengthA--;
+			headBB = headBB.next;
+		}
+		while(headBB!=null){
+			if(headB==headBB)
+				return headBB;
+			headB=headB.next;
+			headBB=headBB.next;
+		}
+		return null;
+	}
 	public static void dispLL(ListNode head){
 		while(head!=null){
 			System.out.print(head.val+" -> ");
