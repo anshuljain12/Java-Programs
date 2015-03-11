@@ -73,6 +73,39 @@ public class BinarySearchTree {
 		postOrderTraversal(bt.right);
 		System.out.print(bt.data+" ");
 	}
+	public static TreeNode searchNode(TreeNode root, int val){
+		TreeNode temp = root;
+		while(temp!=null && temp.val!=val){
+			if(temp.val>val)
+				temp = temp.left;
+			else
+				temp = temp.right;
+		}
+		return temp;
+	}
+	public static TreeNode deleteNode(TreeNode root, TreeNode node){
+		if(root==null || node==null)
+			return root;
+		if(node.left==null && node.right==null){
+			node = null;
+		}
+		else if(node.left==null){
+			node.val = node.right.val;
+			node.right=null;
+		}
+		else if(node.right==null){
+			node.val = node.left.val;
+			node.left=null;
+		}
+		else{
+			TreeNode temp = node.left;
+			while(temp.right!=null)
+				temp = temp.right;
+			node.val = temp.val;
+			deleteNode(root, temp);
+		}
+		return root;
+	}
 	public static boolean search(BinaryTree bt, int data){
 		if(bt==null)
 			return false;
