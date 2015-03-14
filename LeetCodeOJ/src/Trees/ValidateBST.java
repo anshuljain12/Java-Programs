@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class ValidateBST {
 
 	/**
-	 * @param args
+	 * Anshul Jain
+	 * ajain89@asu.edu
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -19,23 +20,36 @@ public class ValidateBST {
 		 *             1   4 
 		 * 
 		 * */
-		//int[] array = {4,2,5,1,3};
+		int[] array = {4,2,5,1,6};
 		/*
 		 * 					4
 		 *                 / \
 		 *                /   \
 		 *               2     5
 		 *              / \       
-		 *             1   3 
+		 *             1   6 
 		 * 
 		 * */
 		//int[] array = {-2147483648};
-		int[] array = {0,-1};
+		//int[] array = {0,-1};
 		//int[] array = {-2147483647,-2147483648,2147483647};
 		BinaryTree bt=null;
 		bt=BinaryTree.buildATree(bt, array);
 		System.out.println(isValidBST(bt));
 	}
+	/*************************************************************************/	
+	public static boolean checkBST(BinaryTree root){
+		return checkBSTMinMax(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+	public static boolean checkBSTMinMax(BinaryTree root, int min, int max){
+		if(root==null)
+			return true;
+		if (root.data < min || root.data > max) 
+		     return false; 
+		return checkBSTMinMax(root.left, min, root.data) &&  
+				checkBSTMinMax(root.right, root.data, max);
+	}
+	/*************************************************************************/	
 	public static boolean isValidBST(BinaryTree root){
 		if(root == null)
 			return true;
