@@ -12,7 +12,7 @@ public class ValidateBST {
 		// TODO Auto-generated method stub
 		//int[] array = {3,2,5,1,4};
 		/*
-		 * 					3
+		 * 	       	    3
 		 *                 / \
 		 *                /   \
 		 *               2     5
@@ -22,7 +22,7 @@ public class ValidateBST {
 		 * */
 		int[] array = {4,2,5,1,6};
 		/*
-		 * 					4
+		 * 		    4
 		 *                 / \
 		 *                /   \
 		 *               2     5
