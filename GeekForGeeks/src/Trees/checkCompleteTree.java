@@ -21,16 +21,16 @@ public class checkCompleteTree {
 		root.right.right.right = new TreeNode(40);
 		root.right.right.left = new TreeNode(22);
 		/*
-		 * 					  8
-		 * 				   / \
-		 * 				  /   \
-		 * 				 /	   \
-		 * 				4       20
-		 *  		 / \	   /  \
-		 *      /   \   /	   \
-		 *     3	   5 10     25
-		 *    /		    /  \    / \
-		 *   1 	     9	 15  22 40
+		 * 	  	 8
+		 * 	        / \
+		 * 	       /   \
+		 * 	      /	    \
+		 * 	     4       20
+		 *          / \	    /  \
+		 *         /   \   /	\
+		 *        3	5 10     25
+		 *       /       /  \    / \
+		 *      1 	9   15  22 40
 		 * 
 		 * */
 		System.out.println(levelOrder(root));
