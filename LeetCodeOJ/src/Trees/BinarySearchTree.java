@@ -83,29 +83,6 @@ public class BinarySearchTree {
 		}
 		return temp;
 	}
-	public static TreeNode deleteNode(TreeNode root, TreeNode node){
-		if(root==null || node==null)
-			return root;
-		if(node.left==null && node.right==null){
-			node = null;
-		}
-		else if(node.left==null){
-			node.val = node.right.val;
-			node.right=null;
-		}
-		else if(node.right==null){
-			node.val = node.left.val;
-			node.left=null;
-		}
-		else{
-			TreeNode temp = node.left;
-			while(temp.right!=null)
-				temp = temp.right;
-			node.val = temp.val;
-			deleteNode(root, temp);
-		}
-		return root;
-	}
 	public static boolean search(BinaryTree bt, int data){
 		if(bt==null)
 			return false;
@@ -119,57 +96,28 @@ public class BinarySearchTree {
 				return search(bt.right, data);
 		}
 	}
-	
-	public static BinaryTree delete(BinaryTree bt, int data){
-		BinaryTree temp = bt;
-		if(temp.data==data)
-			return delete2(temp);
-		while(true){
-			if(data<temp.data){
-				if(temp.left==null)
-					break;
-				if(temp.left.data==data){
-					temp.left=delete2(temp.left);
-					break;
-				}
-				else
-					temp=temp.left;
-			}
-			else{
-				if(temp.right==null)
-					break;
-				if(temp.right.data==data){
-					temp.right=delete2(temp.right);
-					break;
-				}
-				else
-					temp=temp.right;
-			}
+	public static TreeNode deleteNode(TreeNode root, int data){
+		if(root==null)
+			return null;
+		if(root.val == data)
+		{
+			if(root.left==null && root.right==null)
+				return null;
+			if(root.left==null)
+				return root.right;
+			if(root.right==null)
+				return root.left;
+			TreeNode temp = root.left;
+			while(temp.right!=null)
+				temp = temp.right;
+			int a = temp.val;
+			deleteNode(root, a);
+			root.val=a;
 		}
-		return bt;
-	}
-	
-	public static BinaryTree delete2(BinaryTree bt){
-		BinaryTree temp = bt;
-		if(bt.left==null)
-			return bt.right;
-		else if(bt.right==null)
-			return bt.left;
-		else{
-			temp = bt.right;
-			if(temp.left==null){
-				bt.data=temp.data;
-				bt.right=temp.right;
-				return bt;
-			}
-			else{
-				while(temp.left.left!=null){
-					temp=temp.left;
-				}
-				bt.data=temp.left.data;
-				temp.left=temp.left.right;
-				return bt;
-			}
-		}
+		if(root.val>data)
+			root.left = deleteNode(root.left, data);
+		else
+			root.right = deleteNode(root.right, data);
+		return root;
 	}
 }
